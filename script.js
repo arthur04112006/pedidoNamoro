@@ -376,9 +376,7 @@ document.querySelectorAll('.nav-btn').forEach(btn => {
             startButton.addEventListener('click', function() {
                 screens.forEach(screen => screen.classList.remove('active'));
                 document.getElementById('game-screen').classList.add('active');
-                
-                // Inicializar scanner
-                initScanner();
+            
                 
                 // Atualizar navegação
                 navButtons.forEach(btn => btn.classList.remove('active'));
@@ -482,41 +480,6 @@ document.querySelectorAll('.nav-btn').forEach(btn => {
                     setTimeout(() => document.body.removeChild(feedback), 500);
                 }, 3000);
             }
-            function startScanning(video) {
-                const canvas = document.createElement('canvas');
-                const ctx = canvas.getContext('2d');
-                let scanning = true;
-            
-                function tick() {
-                    if (!scanning) return;
-                    
-                    if (video.readyState === video.HAVE_ENOUGH_DATA) {
-                        canvas.width = video.videoWidth;
-                        canvas.height = video.videoHeight;
-                        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-                        
-                        try {
-                            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-                            const code = jsQR(imageData.data, imageData.width, imageData.height, {
-                                inversionAttempts: "dontInvert",
-                            });
-                            
-                            if (code) {
-                                scanning = false; // Pausa temporária
-                                processCode(code.data);
-                                setTimeout(() => scanning = true, 2000); // Retoma após 2s
-                            }
-                        } catch (e) {
-                            console.error("Erro no processamento:", e);
-                        }
-                    }
-                    requestAnimationFrame(tick);
-                }
-                tick();
-            }
-            // Adicione no final da função initScanner()
-            console.log("Scanner iniciado");
-            video.onplaying = () => console.log("Vídeo está transmitindo");
-            video.onerror = (e) => console.error("Erro no vídeo:", e);
+
         });
     
