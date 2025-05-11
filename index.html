@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Você ❤️</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsQR/1.4.0/jsQR.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"></script>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <!-- Partículas de fundo -->
+    <div class="particles" id="particles"></div>
+
+    <div class="container">
+        <main>
+            <!-- Tela inicial -->
+            <section class="screen active" id="home-screen">
+                <!-- Carrossel de fotos -->
+                <div class="photo-carousel">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <img src="./imagens/pagina_inicial.jpeg" alt="Nós dois" class="carousel-img">
+                            <div class="photo-caption">O dia em que tudo começou...</div>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="./imagens/2.jpeg" alt="Nós dois" class="carousel-img">
+                            <div class="photo-caption">Cada momento contigo é especial...</div>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="./imagens/3.jpeg" alt="Nós dois" class="carousel-img">
+                            <div class="photo-caption">Construindo memórias juntos...</div>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="./imagens/4.jpeg" alt="Nós dois" class="carousel-img">
+                            <div class="photo-caption">Meu coração bate mais forte por você...</div>
+                        </div>
+                    </div>
+                    <div class="carousel-nav">
+                        <div class="carousel-dot active" data-slide="0"></div>
+                        <div class="carousel-dot" data-slide="1"></div>
+                        <div class="carousel-dot" data-slide="2"></div>
+                        <div class="carousel-dot" data-slide="3"></div>
+                    </div>
+                </div>
+                
+                <div class="glass love-letter">
+                    <h2 class="love-heading">Para Você, Com Todo Meu Amor</h2>
+                    <p id="love-letter-text">
+                        Meu amor, desde aquele primeiro dia em que nos conhecemos no elevador do prédio, você mudou minha vida. 
+                        Cada sorriso seu ilumina meus dias e cada momento juntos se torna uma memória preciosa que guardo no coração.
+                        Hoje, preparei uma aventura especial para que você descubra o que realmente sinto.
+                        Aceita o desafio?
+                    </p>
+                </div>
+                
+                <div class="cta-container">
+                    <p class="cta-text">Vamos começar nossa jornada juntos?</p>
+                    <button class="start-btn" id="start-journey">Começar Aventura</button>
+                </div>
+                
+                <div class="quote-container glass">
+                    <blockquote class="love-quote">
+                        "A cada dia que passa, descubro novos motivos para te amar ainda mais."
+                    </blockquote>
+                </div>
+            </section>
+
+            <!-- Tela de história -->
+            <section class="screen" id="history-screen">
+                <header>
+                    <h1>Nossa História</h1>
+                </header>
+                <div class="history-container">
+                    <div class="timeline">
+                        <div class="history-item glass">
+                            <div class="history-date">12 de Março</div>
+                            <p>Nosso primeiro encontro no elevador do prédio. Eu sabia desde aquele momento...</p>
+                        </div>
+                        <div class="history-item glass">
+                            <div class="history-date">25 de Março</div>
+                            <p>Nosso primeiro café juntos na cafeteria da esquina.</p>
+                        </div>
+                        <div class="history-item glass">
+                            <div class="history-date">10 de Abril</div>
+                            <p>Quando assistimos aquele filme e você adormeceu no meu ombro.</p>
+                        </div>
+                        <div class="history-item glass">
+                            <div class="history-date">27 de Abril</div>
+                            <p>Nosso primeiro beijo na varanda sob as estrelas.</p>
+                        </div>
+                        <div class="history-item glass">
+                            <div class="history-date">Hoje</div>
+                            <p>O início do nosso próximo capítulo...</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tela de como jogar -->
+            <section class="screen" id="how-to-play-screen">
+                <header>
+                    <h1>Como Jogar</h1>
+                </header>
+                <div class="glass how-to-play">
+                    <div class="instruction">
+                        <div class="instruction-number">1</div>
+                        <div class="instruction-text">
+                            Você encontrará diferentes pontos marcados em um mapa do nosso prédio.
+                            <div class="instruction-detail">
+                                Cada ponto representa um local especial da nossa história juntos.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="instruction">
+                        <div class="instruction-number">2</div>
+                        <div class="instruction-text">
+                            Em cada local, procure um QR Code escondido que contém uma mensagem especial.
+                            <div class="instruction-detail">
+                                Dica: Procure em lugares que têm significado para nós dois. Os QR Codes estão escondidos, mas não impossíveis de encontrar!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="instruction">
+                        <div class="instruction-number">3</div>
+                        <div class="instruction-text">
+                            Use o scanner do aplicativo para ler o QR Code quando encontrá-lo.
+                            <div class="instruction-detail">
+                                Aponte a câmera para o QR Code e aguarde. Caso o scanner não funcione, você pode digitar o código manualmente.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="instruction">
+                        <div class="instruction-number">4</div>
+                        <div class="instruction-text">
+                            Cada código revelará uma mensagem especial e uma nova pista para o próximo local.
+                            <div class="instruction-detail">
+                                Siga as pistas com atenção! Cada uma te levará para uma nova memória nossa.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="instruction">
+                        <div class="instruction-number">5</div>
+                        <div class="instruction-text">
+                            Complete todos os 5 desafios para desbloquear uma mensagem secreta e uma surpresa especial.
+                            <div class="instruction-detail">
+                                O último local te levará para onde estarei esperando por você com algo muito especial...
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <div class="tip-title">💡 <span>Dicas importantes:</span></div>
+                        <ul>
+                            <li>Se tiver dificuldade em encontrar um QR Code, releia a pista com atenção</li>
+                            <li>Os códigos devem ser encontrados na ordem correta</li>
+                            <li>Cada código tem o formato "AMOR-X" (onde X é o número da etapa)</li>
+                            <li>Se o scanner não funcionar, digite o código manualmente</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="good-luck">
+                        Boa sorte na sua jornada de amor! <span class="heart-icon">❤️</span>
+                    </div>  
+                </div>      
+            </section>
+
+            <!-- Tela de mensagem secreta -->
+            <section class="screen" id="secret-message-screen">
+                <header>
+                    <h1>Mensagem Secreta</h1>
+                </header>
+                <div class="glass secret-message">
+                    <img src="/api/placeholder/200/200" alt="Cadeado" class="message-locked" id="message-lock">
+                    <p id="secret-text">
+                        Esta mensagem será desbloqueada quando você completar nossa caçada ao tesouro. Será uma surpresa especial só para você...
+                    </p>
+                </div>
+            </section>
+
+            <!-- Tela de jogo -->
+            <section class="screen" id="game-screen">
+                <header>
+                    <h1>Caça ao Tesouro</h1>
+                </header>
+                <div class="game-container">
+                    <div class="glass game-map">
+                        <div class="map-dot">1</div>
+                        <div class="map-dot">2</div>
+                        <div class="map-dot">3</div>
+                        <div class="map-dot">4</div>
+                        <div class="map-dot">5</div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progress-fill"></div>
+                        </div>
+                        <div class="progress-text">Progresso: <span id="progress-text">0/5</span></div>
+                    </div>
+                    <div class="glass hint-card">
+                        <p>Primeira pista: "Comece onde tudo começou, onde nos vimos pela primeira vez..."</p>
+                    </div>
+                    <div class="scanner-container glass">
+                        <video id="scanner" autoplay playsinline></video>
+                    </div>
+                    <div class="manual-code">
+                        <p>Digite o código:</p>
+                        <input type="text" id="manual-code" placeholder="Ex: AMOR-1">
+                        <button id="submit-code">OK</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tela final -->
+            <section class="screen" id="final-screen">
+                <header>
+                    <h1>Parabéns!</h1>
+                </header>
+                <div class="final-hearts">
+                    <div class="heart-animation">❤️</div>
+                </div>
+                <div class="glass final-message">
+                    <h2 class="final-heading">Você Chegou ao Final da Jornada!</h2>
+                    <p id="final-text">
+                        Você completou nossa caçada ao tesouro! Agora, venha até o terraço do prédio para sua surpresa final...
+                    </p>
+                    <div class="final-countdown">
+                        <p>Estou esperando por você em:</p>
+                        <div class="countdown-timer" id="countdown">
+                            <div class="time-block">
+                                <span id="minutes">05</span>
+                                <span class="time-label">minutos</span>
+                            </div>
+                            <div class="time-divider">:</div>
+                            <div class="time-block">
+                                <span id="seconds">00</span>
+                                <span class="time-label">segundos</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="final-media">
+                    <video id="final-video" width="320" height="240" controls style="display:none;">
+                        <source src="seu-video.mp4" type="video/mp4">
+                        Seu navegador não suporta vídeos.
+                    </video>
+                    <audio id="final-audio" controls style="display:none;">
+                        <source src="sua-mensagem.mp3" type="audio/mpeg">
+                        Seu navegador não suporta áudio.
+                    </audio>
+                </div>
+                <div class="final-buttons">
+                    <button class="nav-btn" data-screen="secret-message-screen">
+                        <div>💌</div>
+                        <span>Ver Mensagem Secreta</span>
+                    </button>
+                </div>
+            </section>
+        </main>
+
+        <!-- Navegação fixa -->
+        <nav>
+            <button class="nav-btn active" data-screen="home-screen">
+                <div>❤️</div>
+                <span>Início</span>
+            </button>
+            <button class="nav-btn" data-screen="history-screen">
+                <div>📜</div>
+                <span>Nossa História</span>
+            </button>
+            <button class="nav-btn" data-screen="how-to-play-screen">
+                <div>🎮</div>
+                <span>Como Jogar</span>
+            </button>
+            <button class="nav-btn" data-screen="secret-message-screen">
+                <div>💌</div>
+                <span>Mensagem</span>
+            </button>
+        </nav>
+    </div>
+
+    <!-- Confetti animation container -->
+    <div class="confetti-container" id="confetti"></div>
+
+    <script src="script.js"></script>
