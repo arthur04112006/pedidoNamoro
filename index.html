@@ -15,6 +15,7 @@
 
     <div class="container">
         <main>
+            <h1 class="hidden">Arthur & Nathalia</h1>
             <!-- Tela inicial -->
             <section class="screen active" id="home-screen">
                 <!-- Carrossel de fotos -->
@@ -167,17 +168,36 @@
             </section>
 
             <!-- Tela de mensagem secreta -->
-            <section class="screen" id="secret-message-screen">
-                <header>
-                    <h1>Mensagem Secreta</h1>
-                </header>
-                <div class="glass secret-message">
-                    <img src="/api/placeholder/200/200" alt="Cadeado" class="message-locked" id="message-lock">
-                    <p id="secret-text">
-                        Esta mensagem será desbloqueada quando você completar nossa caçada ao tesouro. Será uma surpresa especial só para você...
-                    </p>
-                </div>
-            </section>
+<section class="screen" id="secret-message-screen">
+    <header>
+        <h1>Mensagem Secreta</h1>
+    </header>
+    <div class="glass secret-message" id="secret-message-container">
+        <img src="./imagens/cadeado.png" alt="Cadeado" class="message-locked" id="message-lock">
+        <p id="secret-text">
+            Esta mensagem será desbloqueada quando você completar nossa caçada ao tesouro. Será uma surpresa especial só para você...
+        </p>
+    </div>   
+</section>
+
+
+    <div class="final-media">
+        <video id="final-video" width="320" height="240" controls style="display:none;">
+            <source src="./imagens/green-forest-moewalls-com.mp4" type="video/mp4">
+            Seu navegador não suporta vídeos.
+        </video>
+        <audio id="final-audio" controls style="display:none;">
+            <source src="sua-mensagem.mp3" type="audio/mpeg">
+            Seu navegador não suporta áudio.
+        </audio>
+    </div>
+    <div class="final-buttons">
+        <button class="nav-btn unlocked-btn" data-screen="secret-message-screen" id="secret-message-btn" style="display: none;">
+            <div>💌</div>
+            <span>Ver Mensagem Secreta</span>
+        </button>
+    </div>
+</section>
 
             <!-- Tela de jogo -->
             <section class="screen" id="game-screen">
@@ -185,13 +205,6 @@
                     <h1>Caça ao Tesouro</h1>
                 </header>
                 <div class="game-container">
-                    <div class="glass game-map">
-                        <div class="map-dot">1</div>
-                        <div class="map-dot">2</div>
-                        <div class="map-dot">3</div>
-                        <div class="map-dot">4</div>
-                        <div class="map-dot">5</div>
-                    </div>
                     <div class="progress-container">
                         <div class="progress-bar">
                             <div class="progress-fill" id="progress-fill"></div>
@@ -209,51 +222,35 @@
                 </div>
             </section>
 
+            
             <!-- Tela final -->
-            <section class="screen" id="final-screen">
-                <header>
-                    <h1>Parabéns!</h1>
-                </header>
-                <div class="final-hearts">
-                    <div class="heart-animation">❤️</div>
+<section class="screen" id="final-screen">
+    <header>
+        <h1>Parabéns!</h1>
+    </header>
+    <div class="final-hearts">
+        <div class="heart-animation">❤️</div>
+    </div>
+    <div class="glass final-message">
+        <h2 class="final-heading">Você Chegou ao Final da Jornada!</h2>
+        <p id="final-text">
+            Você completou nossa caçada ao tesouro! Agora, venha até o terraço do prédio para sua surpresa final...
+        </p>
+        <div class="final-countdown">
+            <p>Estou esperando por você em:</p>
+            <div class="countdown-timer" id="countdown">
+                <div class="time-block">
+                    <span id="minutes">05</span>
+                    <span class="time-label">minutos</span>
                 </div>
-                <div class="glass final-message">
-                    <h2 class="final-heading">Você Chegou ao Final da Jornada!</h2>
-                    <p id="final-text">
-                        Você completou nossa caçada ao tesouro! Agora, venha até o terraço do prédio para sua surpresa final...
-                    </p>
-                    <div class="final-countdown">
-                        <p>Estou esperando por você em:</p>
-                        <div class="countdown-timer" id="countdown">
-                            <div class="time-block">
-                                <span id="minutes">05</span>
-                                <span class="time-label">minutos</span>
-                            </div>
-                            <div class="time-divider">:</div>
-                            <div class="time-block">
-                                <span id="seconds">00</span>
-                                <span class="time-label">segundos</span>
-                            </div>
-                        </div>
-                    </div>
+                <div class="time-divider">:</div>
+                <div class="time-block">
+                    <span id="seconds">00</span>
+                    <span class="time-label">segundos</span>
                 </div>
-                <div class="final-media">
-                    <video id="final-video" width="320" height="240" controls style="display:none;">
-                        <source src="seu-video.mp4" type="video/mp4">
-                        Seu navegador não suporta vídeos.
-                    </video>
-                    <audio id="final-audio" controls style="display:none;">
-                        <source src="sua-mensagem.mp3" type="audio/mpeg">
-                        Seu navegador não suporta áudio.
-                    </audio>
-                </div>
-                <div class="final-buttons">
-                    <button class="nav-btn" data-screen="secret-message-screen">
-                        <div>💌</div>
-                        <span>Ver Mensagem Secreta</span>
-                    </button>
-                </div>
-            </section>
+            </div>
+        </div>
+    </div>
         </main>
 
         <!-- Navegação fixa -->

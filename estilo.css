@@ -1,6 +1,6 @@
         /* Variáveis de cores */
         :root {
-            --roxo-escuro: #0f0a1a;
+            --roxo-escuro: #1b132e;
             --roxo-claro: #8a2be2;
             --rosa: #ff6bff;
             --branco: #ffffff;
@@ -21,39 +21,13 @@
             height: 100vh;
             overflow-x: hidden;
         }
-
-        /* Efeito partículas */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
+        .hidden {
+            color: #c78bff;
+            margin: 40px 0 40px 0;
+            
         }
 
-        .particle {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            pointer-events: none;
-            animation: float 8s infinite;
-        }
 
-        @keyframes float {
-            0% {
-                transform: translateY(0) translateX(0);
-                opacity: 0;
-            }
-            50% {
-                opacity: 0.8;
-            }
-            100% {
-                transform: translateY(-100vh) translateX(20px);
-                opacity: 0;
-            }
-        }
 
         /* Efeito Glassmorphism */
         .glass {
@@ -63,6 +37,7 @@
             border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.18);
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            margin: 40px 0;
         }
 
         .container {
@@ -222,7 +197,7 @@
         
         .cta-container {
             text-align: center;
-            margin-bottom: 20px;
+            margin: 35px;
         }
         
         .cta-text {
@@ -237,6 +212,8 @@
             max-width: 80%;
             padding: 20px;
             margin-top: 10px;
+            margin-bottom: 90px;
+            position: relative;
             background: linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(255, 107, 255, 0.2));
         }
         
@@ -315,6 +292,7 @@
         .history-container {
             width: 100%;
             padding: 20px;
+            margin-bottom: 40px;
         }
 
         .timeline {
@@ -337,8 +315,6 @@
 
         .history-item {
             padding: 15px;
-            position: relative;
-            width: 85%;
             margin: 20px 0;
             border-radius: 15px;
         }
@@ -384,44 +360,6 @@
             align-items: center;
             margin-bottom: 60px;
         }
-
-        .game-map {
-            width: 100%;
-            max-width: 350px;
-            height: 250px;
-            margin-bottom: 20px;
-            position: relative;
-            background: var(--vidro);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .map-dot {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: var(--rosa);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 12px;
-            box-shadow: 0 0 10px rgba(255, 107, 255, 0.7);
-        }
-
-        .map-dot.completed {
-            background: #4CAF50;
-        }
-
-        .map-dot:nth-child(1) { top: 30%; left: 20%; }
-        .map-dot:nth-child(2) { top: 50%; left: 60%; }
-        .map-dot:nth-child(3) { top: 70%; left: 30%; }
-        .map-dot:nth-child(4) { top: 40%; left: 80%; }
-        .map-dot:nth-child(5) { top: 80%; left: 70%; }
-
         .progress-container {
             width: 100%;
             max-width: 350px;
@@ -449,32 +387,6 @@
             margin-top: 5px;
             color: rgba(255, 255, 255, 0.7);
         }
-
-        .scanner-container {
-            width: 100%;
-            max-width: 350px;
-            margin: 20px 0;
-        }
-
-        #scanner {
-            width: 100%;
-            height: 250px;
-            background: #000;
-            border-radius: 15px;
-            overflow: hidden;
-        }
-
-        #scanner-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 2px solid var(--rosa);
-            box-sizing: border-box;
-            pointer-events: none;
-        }
-
         .hint-card {
             padding: 20px;
             width: 100%;
@@ -513,20 +425,41 @@
             cursor: pointer;
         }
 
-        /* Mensagem secreta */
-        .secret-message {
-            padding: 25px;
-            max-width: 90%;
-            line-height: 1.6;
-            font-size: 18px;
-            text-align: center;
-        }
+        /* Estilo para o container da mensagem secreta */
+.glass.secret-message {
+    position: relative;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    text-align: center;
+}
 
-        .message-locked {
-            width: 120px;
-            height: 120px;
-            margin-bottom: 20px;
-        }
+/* Estilo do cadeado */
+.message-locked {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 5px rgba(138, 43, 226, 0.5));
+}
+
+/* Estilo quando desbloqueado */
+.glass.secret-message.unlocked .message-locked {
+    display: none;
+}
+
+/* Estilo do botão na navegação quando desbloqueado */
+.nav-btn.unlocked {
+    position: relative;
+}
+
+.nav-btn.unlocked::after {
+    content: "✨";
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    font-size: 12px;
+}
 
         /* Tela final */
         .final-message {
@@ -553,14 +486,12 @@
             overflow: hidden;
             margin-bottom: 10px;
         }
-        
-        .heart-
-
         /* Como jogar */
         .how-to-play {
             padding: 25px;
             max-width: 90%;
             line-height: 1.6;
+            margin-bottom: 90px;
         }
 
         .instruction {
@@ -641,10 +572,6 @@
                 padding: 12px 24px;
                 font-size: 16px;
             }
-
-            .history-item {
-                width: 75%;
-            }
         }
         .feedback {
             position: fixed;
@@ -686,30 +613,4 @@
         
         @keyframes fadeOut {
             to { opacity: 0; top: -100px; }
-        }
-        .capture-btn {
-            background: linear-gradient(45deg, var(--roxo-claro), var(--rosa));
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 50px;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 15px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 4px 12px rgba(138, 43, 226, 0.4);
-            display: block;
-            width: 80%;
-            max-width: 200px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .capture-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(138, 43, 226, 0.6);
-        }
-        
-        #canvas {
-            display: none;
         }
