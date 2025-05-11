@@ -168,58 +168,84 @@
         }
 
         // Inicializar scanner QR Code
-        function initScanner() {
-            const video = document.getElementById('scanner');
-            let canvasElement = document.createElement('canvas');
-            let canvas = canvasElement.getContext('2d');
-            let scanning = false;
-            
-            // Configurar câmera
-            navigator.mediaDevices.getUserMedia({ 
-                video: { 
-                    facingMode: "environment",
-                    width: { ideal: 1280 },
-                    height: { ideal: 720 }
-                } 
-            }).then(function(stream) {
-                video.srcObject = stream;
-                video.play();
-                
-                // Função para verificar o QR Code
-                function tick() {
-                    if (video.readyState === video.HAVE_ENOUGH_DATA && !scanning) {
-                        scanning = true;
-                        
-                        canvasElement.height = video.videoHeight;
-                        canvasElement.width = video.videoWidth;
-                        canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
-                        
-                        const imageData = canvas.getImageData(0, 0, canvasElement.width, canvasElement.height);
-                        const code = jsQR(imageData.data, imageData.width, imageData.height, {
-                            inversionAttempts: "dontInvert",
-                        });
-                        
-                        if (code) {
-                            console.log("QR Code detectado:", code.data);
-                            processCode(code.data);
-                            
-                            // Pausa temporária após detectar um código
-                            setTimeout(() => {
-                                scanning = false;
-                            }, 2000);
-                        } else {
-                            scanning = false;
-                        }
-                    }
-                    requestAnimationFrame(tick);
-                }
-                
-                tick();
-            }).catch(function(err) {
-                console.error("Erro ao acessar a câmera: ", err);
-                showFeedback("Não foi possível acessar a câmera. Por favor, utilize o código manual.", 'error');
-            });
+        // Variável para controlar o stream da câmera
+let cameraStream = null;
+
+function initScanner() {
+    const video = document.getElementById('scanner');
+    const captureBtn = document.getElementById('capture-btn');
+    
+    // Configurar a câmera
+    navigator.mediaDevices.getUserMedia({ 
+        video: { 
+            facingMode: "environment",
+            width: { ideal: 1280 },
+            height: { ideal: 720 }
+        } 
+    }).then(function(stream) {
+        cameraStream = stream;
+        video.srcObject = stream;
+        
+        // Mostrar botão de captura quando a câmera estiver pronta
+        captureBtn.style.display = 'block';
+        
+        // Configurar evento do botão
+        captureBtn.addEventListener('click', function() {
+            captureAndDecode(video);
+        });
+        
+    }).catch(function(err) {
+        console.error("Erro ao acessar a câmera: ", err);
+        alert("Não foi possível acessar a câmera. Por favor, utilize o código manual.");
+    });
+}
+
+function captureAndDecode(video) {
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    
+    // Ajustar canvas para o tamanho do vídeo
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    
+    // Desenhar o frame atual do vídeo no canvas
+    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+    
+    try {
+        // Extrair dados da imagem para decodificar
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const code = jsQR(imageData.data, imageData.width, imageData.height, {
+            inversionAttempts: "dontInvert",
+        });
+        
+        if (code) {
+            console.log("QR Code detectado:", code.data);
+            processCode(code.data);
+        } else {
+            alert("Nenhum QR Code encontrado na foto. Tente novamente com o código mais centralizado e em foco.");
         }
+    } catch (e) {
+        console.error("Erro ao decodificar:", e);
+        alert("Ocorreu um erro ao processar a imagem. Tente novamente.");
+    }
+}
+
+// Não esqueça de parar a câmera quando não for mais necessária
+function stopCamera() {
+    if (cameraStream) {
+        cameraStream.getTracks().forEach(track => track.stop());
+        cameraStream = null;
+    }
+}
+
+// Chame stopCamera() quando sair da tela do jogo
+document.querySelectorAll('.nav-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        if (!this.getAttribute('data-screen').includes('game-screen')) {
+            stopCamera();
+        }
+    });
+});
 
         // Processar código (QR ou manual)
         function processCode(inputCode) {
